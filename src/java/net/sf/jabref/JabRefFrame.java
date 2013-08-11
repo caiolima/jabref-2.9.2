@@ -356,6 +356,7 @@ public class JabRefFrame extends JFrame implements OutputPrinter {
     dbImport = new DbImportAction(this).getAction(),
     //downloadFullText = new GeneralAction("downloadFullText", "Look up full text document",
     //        Globals.lang("Follow DOI or URL link and try to locate PDF full text document")),
+    setTableFont = new SetTableFontAction(),
     increaseFontSize = new IncreaseTableFontSizeAction(),
     decreseFontSize = new DecreaseTableFontSizeAction(),
     installPlugin = new PluginInstallerAction(this),
@@ -1339,6 +1340,7 @@ public JabRefPreferences prefs() {
       view.add(prevTab);
       view.add(sortTabs);
       view.addSeparator();
+      view.add(setTableFont);
       view.add(increaseFontSize);
       view.add(decreseFontSize);
       view.addSeparator();
@@ -2520,6 +2522,21 @@ class SaveSessionAction
        
     }
 
+    class SetTableFontAction extends MnemonicAwareAction {
+    	public SetTableFontAction() {
+			putValue(NAME, "Set table font");
+		}
+
+		public void actionPerformed(ActionEvent event) {
+			Font f = new FontSelectorDialog(null, GUIGlobals.CURRENTFONT)
+					.getSelectedFont();
+			if (f == null)
+				return;
+			else
+				GUIGlobals.CURRENTFONT = f;
+		}
+    }
+    
     class IncreaseTableFontSizeAction extends MnemonicAwareAction {
         public IncreaseTableFontSizeAction() {
             putValue(NAME, "Increase table font size");
