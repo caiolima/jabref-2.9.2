@@ -8,6 +8,14 @@ import net.sf.jabref.labelPattern.LabelPatternUtil;
 public class LabelPatternUtilTest extends TestCase {
 
 
+	/**
+     *Test for rm4 
+     */
+	public void testMakeLabel(){
+		BibtexEntry entry0 = BibtexParser.singleFromString("@ARTICLE{kohn, author={Joao daSilva}, year={2013}}");
+    	assertEquals("Silva", LabelPatternUtil.makeLabel(entry0, "auth"));
+	}
+	
     /**
      * Test for https://sourceforge.net/forum/message.php?msg_id=4498555
      * Test the Labelmaker and all kind of accents

@@ -298,7 +298,10 @@ public class LabelPatternUtil {
                  * substitution of editor.
                  */
                 String authString = _entry.getField("author");
-
+              //solving the bug of rm4
+                if(authString != null){
+                	authString = authString.replaceAll("([a-z])([A-Z])", "$1 $2");
+                }
                 if (val.startsWith("pure")) {
                     // remove the "pure" prefix so the remaining
                     // code in this section functions correctly
